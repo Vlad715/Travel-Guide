@@ -1,5 +1,5 @@
 import React from 'react';
-import './Country.scss';
+import './City.scss';
 
 const CityListItem = ({city, onAddLike}) => {
         

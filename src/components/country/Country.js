@@ -17,18 +17,18 @@ class Country extends Component {
         const { countries, countryAddLike } = this.props;
 
         return (
-            <div>
-                {
-                    countries.map( (country) => {
-                        return(
-                            <div key={country.id}>
-                                <CountryListItem country={country}
-                                onAddLike={() => countryAddLike(country.id)}/>
-                            </div>
-                        )
-                    })
-                }
-            </div>  
+        <div>
+            {
+                countries.map( (country) => {
+                    return(
+                        <div key={country.id}>
+                            <CountryListItem country={country}
+                            onAddLike={() => countryAddLike(country.id)}/>
+                        </div>
+                    )
+                })
+            }
+        </div>  
         )
     }
 }

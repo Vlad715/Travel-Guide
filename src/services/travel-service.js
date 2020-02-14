@@ -20,7 +20,7 @@ export default class TravelService {
             countryName: 'Cambodia',
             picture: CambodiaPict,
             voucher: 5,
-            like: true }
+            like: false }
     ];
 
     dataCity = [

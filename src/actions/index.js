@@ -22,7 +22,7 @@ export const citiesLoaded = (cities) => {
 
 export const cityAddLike = (cityId) => {
     return {
-        type: 'COUNTRY_ADD_LIKE',
+        type: 'CITY_ADD_LIKE',
         payload: cityId
     };
 };
