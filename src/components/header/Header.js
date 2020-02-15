@@ -1,24 +1,39 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { changeLanguage } from '../../actions';
 import './Header.scss';
 
 
-const Header = () => {
+class Header extends Component {
 
-    return (
-        <div className='container'>
-            <div>
-                <Link to="/">Главная</Link>
+    render() {
+        const { language, changeLanguage } = this.props;
+        const { MAIN, COUNTRIES, CITIES, LANGUAGE } = language;
+
+        return (
+            <div className='container'>
+                <div>
+                    <Link to="/">{MAIN}</Link>
+                </div>
+                <div>
+                    <Link to="/country/">{COUNTRIES}</Link>
+                </div>
+                <div>
+                    <Link to="/city/">{CITIES}</Link>
+                </div>
+                <button onClick={() => changeLanguage(language)}>{LANGUAGE}</button>
             </div>
-            <div>
-                <Link to="/country/">Страны</Link>
-            </div>
-            <div>
-                <Link to="/city/">Города</Link>
-            </div>
-            <div>Экскурсии</div>
-        </div>
-    )
+        )
+    }
 }
 
-export default Header;
+const mapStateToProps = ({ language }) => {
+    return { language };
+}
+
+const mapDispatchToProps = {
+    changeLanguage
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -10,11 +10,13 @@ class Country extends Component {
 
     componentDidMount() {
         const { TravelService } = this.props;
-        TravelService.getCountry().then((countries) => this.props.countryLoaded(countries));
+        if(!this.props.countries.length){
+            TravelService.getCountry().then((countries) => this.props.countryLoaded(countries));
+        }
     }
 
     render() {
-        const { countries, countryAddLike } = this.props;
+        const { countries, countryAddLike, language } = this.props;
 
         return (
         <div>
@@ -22,7 +24,7 @@ class Country extends Component {
                 countries.map( (country) => {
                     return(
                         <div key={country.id}>
-                            <CountryListItem country={country}
+                            <CountryListItem country={country} language={language}
                             onAddLike={() => countryAddLike(country.id)}/>
                         </div>
                     )
@@ -33,8 +35,8 @@ class Country extends Component {
     }
 }
 
-const mapStateToProps = ({ countries }) => {
-    return { countries };
+const mapStateToProps = ({ countries, language }) => {
+    return { countries, language };
 }
 
 const mapDispatchToProps = {

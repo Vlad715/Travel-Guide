@@ -1,7 +1,10 @@
+import RU from '../config/ru';
+import EN from '../config/en';
 
 const initualState = {
     countries: [],
     cities: [],
+    language: EN
 };
 
 const updateCountryItems = (state, countryId) => {
@@ -58,6 +61,13 @@ const reduser = (state = initualState, action) => {
         case 'CITY_ADD_LIKE':
             return updateCityItems(state, action.payload);
 
+        case 'CHANGE_LANGUAGE':
+            let lang;
+            action.payload === RU ? lang = EN : lang = RU;
+            return {
+                ...state,
+                language: lang
+            };
         default: 
             return state;
     }

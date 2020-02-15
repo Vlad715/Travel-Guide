@@ -9,11 +9,13 @@ class City extends Component {
 
     componentDidMount() {
         const { TravelService } = this.props;
-        TravelService.getCity().then((cities) => this.props.citiesLoaded(cities));
+        if(!this.props.cities.length){
+            TravelService.getCity().then((cities) => this.props.citiesLoaded(cities));
+        }
     }
 
     render() {
-        const { cities, cityAddLike } = this.props;
+        const { cities, cityAddLike, language } = this.props;
 
         return (
             <div>
@@ -21,7 +23,7 @@ class City extends Component {
                     cities.map( (city) => {
                         return(
                             <div key={city.id}>
-                                <CityListItem city={city}
+                                <CityListItem city={city} language={language}
                                 onAddLike={() => cityAddLike(city.id)}/>
                             </div>
                         )
@@ -32,8 +34,8 @@ class City extends Component {
     }
 }
 
-const mapStateToProps = ({ cities }) => {
-    return { cities };
+const mapStateToProps = ({ cities, language }) => {
+    return { cities, language };
 }
 
 const mapDispatchToProps = {
